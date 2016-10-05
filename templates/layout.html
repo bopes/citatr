@@ -13,13 +13,18 @@
 <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
 <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
 <body>
-  <main>
-    <h1>Citatr</h1>
-    <div class='content row'>
+  <div class='wrapper'>
+    <header>
+      <h1>Citatr</h1>
+    </header>
+    <main>
       {% for message in get_flashed_messages() %}
         <div class=flash>{{ message }}</div>
       {% endfor %}
       {% block body %}{% endblock %}
-    </div>
-  </main>
+    </main>
+    <footer>
+
+    </footer>
+  </div>
 </body>
