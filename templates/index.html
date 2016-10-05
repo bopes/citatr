@@ -1,30 +1,45 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if error %} <p class=error><strong>Error:</strong>{{ error }}{% endif %}
-  <div class='left col-md-6'>
-    <div id='input'>
-      <h2>Initial Westlaw Citation</h2>
-      <form id='input_form' action="/convert" >
-        <label for="input[text]">Westlaw Citation</label>
-        <textarea name="input[text]" id="input_text" cols="30" rows="8"></textarea>
-        <label for="input[pages]">Pages</label>
-        <input type="text" name="input[pages]" id="input_pages">
-        <input type="submit" id='input_submit' class='btn btn-primary' value='Convert Citation'>
-      </form>
+  <div class='content row'>
+    <div id='input'class='col-md-6'>
+      <div class='blue_background'>
+        <h2>Initial Westlaw Citation</h2>
+        <form id='input_form' action="/convert" >
+          <label for="input[text]">Westlaw Citation</label>
+          <textarea name="input[text]" id="input_text" cols="30" rows="8"></textarea>
+          <label for="input[pages]">Pages</label>
+          <input type="text" name="input[pages]" id="input_pages">
+          <input type="submit" id='input_submit' class='btn btn-primary' value='Convert Citation'>
+        </form>
+      </div>
+    </div>
+
+    <div id='output' class='col-md-6'>
+      <div class='blue_background'>
+        <h2>Converted Bluebook Citation</h2>
+        <div id='conversion_container'>
+          <p id='conversion_error'>Citation conversion error. Please make sure you have the current format!</p>
+          <p name='converted_citation' id='converted_citation'></p>
+          <img id='loading_gif' src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif">
+        </div>
+      </div>
     </div>
   </div>
 
-
-  <div class='right col-md-6'>
-    <div id='output'>
-      <h2>Converted Bluebook Citation</h2>
-      <div id='converted_citation_container'>
-        <p id='conversion_error'>Citation conversion error. Please make sure you have the current format!</p>
-        <p name='converted_citation' id='converted_citation'></p>
-      </div>
+  <div id='instructions_container' class='content row'>
+    <h3>Instructions</h3>
+    <div class='col-sm-3'>
+      <p class='blue_background'>Copy and paste the Westlaw case citation into the above text box.</p>
     </div>
-    <div id='loading_gif' class='col-md-6'>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" height=200>
+    <div class='col-sm-3'>
+      <p class='blue_background'>Enter the pages referenced into the Pages text box.</p>
+    </div>
+    <div class='col-sm-3'>
+      <p class='blue_background'>Click 'Convert Citation' to generate Bluebook citation.</p>
+    </div>
+    <div class='col-sm-3'>
+      <p class='blue_background'>Copy the generated Bluebook citation into your document. Done!.</p>
     </div>
   </div>
 {% endblock %}
