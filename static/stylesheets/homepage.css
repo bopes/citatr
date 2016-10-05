@@ -17,7 +17,8 @@ h1 {
 
 .content {
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid black;
+  border-radius: 10px;
   padding: 15px;
   text-align: center;
 }
@@ -29,14 +30,19 @@ h1 {
 
 /* Input */
 
+#input {
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 1em;
+}
+
 label {
   display: block;
-  margin: 1em;
 }
 
 textarea {
   width: 90%;
-  margin: auto;
+  margin: 0 auto 1em;
   text-align: center;
 }
 
