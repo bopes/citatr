@@ -92,6 +92,13 @@ input {
   all: initial;
 }
 
+.right {
+  text-align: center;
+}
+
 #loading_gif {
   display: none;
+  /*border: 1px solid red;*/
+  width: 100%;
+  text-align: center;
 }
