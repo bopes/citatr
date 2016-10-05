@@ -1,43 +1,55 @@
 $(document).ready(function(){
 
-  $inputDiv = $('#input')
   $inputForm = $('#input_form');
   $inputText = $('#input_text');
-  $inputPages = $('#input_pages')
+  $inputPages = $('#input_pages');
 
-  $convertButton =$('#convert_button')
+  $loadingGif = $('#loading_gif');
 
-  $loadingGif = $('#loading_gif')
-
-  $outputDiv = $('#output')
+  $conversionError = $('#conversion_error');
   $convertedCitation = $('#converted_citation');
+
 
   var receiveCitationInput = function(event){
     event.preventDefault();
     showLoadingGif();
-    $.ajax({
-      url: '/convert',
-      data: $inputForm.serialize()
-    })
-      .done(
-        receiveConvertedCitation
-      );
+    inputData = $inputForm.serialize();
+    setTimeout(sendInputToConverter,750,inputData);
+  };
+
+  var sendInputToConverter = function(input){
+    convertInput(input);
+  };
+
+  var convertInput = function(input){
+    ajaxObj = {url: '/convert', data: input};
+    $.ajax(ajaxObj)
+      .done(receiveConvertedCitation)
+      .fail(displayConversionError);
   };
 
   var receiveConvertedCitation = function(data){
+    finalCitation = data['finalCitation'];
+    displayConvertedCitation(finalCitation);
     hideLoadingGif();
-    displayConvertedCitation(data['finalCitation']);
     setupChangeListeners();
   };
 
-  var setupChangeListeners = function(){
-    $inputText.on('change',receiveCitationInput)
-    $inputPages.on('change',receiveCitationInput)
+  var displayConvertedCitation = function(citationText){
+    $conversionError.hide();
+    $convertedCitation.show();
+    $convertedCitation.text(citationText);
   };
 
-  var displayConvertedCitation = function(citationText){
-    $outputDiv.show();
-    $convertedCitation.text(citationText);
+  var setupChangeListeners = function(){
+    $inputText.on('change',receiveCitationInput);
+    $inputPages.on('change',receiveCitationInput);
+  };
+
+  var displayConversionError = function(){
+    $convertedCitation.hide();
+    $conversionError.show();
+    hideLoadingGif();
   };
 
   var showLoadingGif = function(){
@@ -49,6 +61,5 @@ $(document).ready(function(){
   };
 
   $inputForm.on('submit',receiveCitationInput);
-  $convertButton.on('click',receiveCitationInput);
 
-})
+});
