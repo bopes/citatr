@@ -12,6 +12,7 @@ $(document).ready(function(){
 
   var receiveCitationInput = function(event){
     event.preventDefault();
+    clearConversionContainer();
     showLoadingGif();
     inputData = $inputForm.serialize();
     setTimeout(sendInputToConverter,750,inputData);
@@ -30,26 +31,27 @@ $(document).ready(function(){
 
   var receiveConvertedCitation = function(data){
     finalCitation = data['finalCitation'];
+    clearConversionContainer();
     displayConvertedCitation(finalCitation);
-    hideLoadingGif();
     setupChangeListeners();
   };
 
   var displayConvertedCitation = function(citationText){
-    $conversionError.hide();
     $convertedCitation.text(citationText);
     $convertedCitation.show();
   };
 
-  var setupChangeListeners = function(){
-    $inputText.on('change',receiveCitationInput);
-    $inputPages.on('change',receiveCitationInput);
+  var hideConvertedCitation = function(){
+    $convertedCitation.hide();
   };
 
   var displayConversionError = function(){
-    $convertedCitation.hide();
+    clearConversionContainer();
     $conversionError.show();
-    hideLoadingGif();
+  };
+
+  var hideConversionError = function(){
+    $conversionError.hide();
   };
 
   var showLoadingGif = function(){
@@ -58,6 +60,17 @@ $(document).ready(function(){
 
   var hideLoadingGif = function(){
     $loadingGif.hide();
+  };
+
+  var clearConversionContainer = function(){
+    hideConversionError();
+    hideConvertedCitation();
+    hideLoadingGif();
+  };
+
+  var setupChangeListeners = function(){
+    $inputText.on('change',receiveCitationInput);
+    $inputPages.on('change',receiveCitationInput);
   };
 
   $inputForm.on('submit',receiveCitationInput);
