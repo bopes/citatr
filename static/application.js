@@ -5,6 +5,8 @@ $(document).ready(function(){
   $inputText = $('#input_text');
   $inputPages = $('#input_pages')
 
+  $convertButton =$('#convert_button')
+
   $loadingGif = $('#loading_gif')
 
   $outputDiv = $('#output')
@@ -47,5 +49,6 @@ $(document).ready(function(){
   };
 
   $inputForm.on('submit',receiveCitationInput);
+  $convertButton.on('click',receiveCitationInput);
 
 })
