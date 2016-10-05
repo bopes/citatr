@@ -22,12 +22,13 @@ h2 {
 .content {
   background-color: white;
   border-radius: 1em;
-  padding: 1.5em;
+  padding: 1em;
   text-align: center;
 }
 
-#loading_gif {
-  display: none;
+.col-md-6 {
+  padding: 0.5em;
+  padding-right: 0.75em;
 }
 
 
@@ -81,6 +82,16 @@ input {
   padding: 1em;
 }
 
+#conversion_error {
+  display: none;
+  color: red;
+  margin: 0;
+}
+
 #converted_citation {
   all: initial;
+}
+
+#loading_gif {
+  display: none;
 }
