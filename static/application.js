@@ -37,8 +37,8 @@ $(document).ready(function(){
 
   var displayConvertedCitation = function(citationText){
     $conversionError.hide();
-    $convertedCitation.show();
     $convertedCitation.text(citationText);
+    $convertedCitation.show();
   };
 
   var setupChangeListeners = function(){
