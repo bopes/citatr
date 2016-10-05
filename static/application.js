@@ -10,7 +10,6 @@ $(document).ready(function(){
 
   var receiveCitationInput = function(event){
     event.preventDefault();
-    $form = $(this);
     $.ajax({
       url: '/convert',
       data: $inputForm.serialize()
@@ -22,6 +21,12 @@ $(document).ready(function(){
 
   var receiveConvertedCitation = function(data){
     displayConvertedCitation(data['finalCitation']);
+    setupChangeListeners();
+  };
+
+  var setupChangeListeners = function(){
+    $inputText.on('change',receiveCitationInput)
+    $inputPages.on('change',receiveCitationInput)
   };
 
   var displayConvertedCitation = function(citationText){
@@ -30,7 +35,5 @@ $(document).ready(function(){
   };
 
   $inputForm.on('submit',receiveCitationInput);
-  $inputText.on('change',receiveCitationInput)
-  $inputPages.on('change',receiveCitationInput)
 
 })
