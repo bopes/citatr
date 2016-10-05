@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if error %} <p class=error><strong>Error:</strong>{{ error }}{% endif %}
-  <div class='col-md-6'>
+  <div class='left col-md-6'>
     <div id='input'>
       <h2>Initial Westlaw Citation</h2>
       <form id='input_form' action="/convert" >
@@ -15,7 +15,7 @@
   </div>
 
 
-  <div class='col-md-6'>
+  <div class='right col-md-6'>
     <div id='output'>
       <h2>Converted Bluebook Citation</h2>
       <div id='converted_citation_container'>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div id='loading_gif' class='col-md-6'>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" height=200>
     </div>
   </div>
 {% endblock %}
