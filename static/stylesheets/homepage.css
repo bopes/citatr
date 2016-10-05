@@ -6,7 +6,7 @@ body {
 
 /* Layout */
 
-main {
+.wrapper {
   width: 80%;
   margin: 0 auto;
 }
@@ -22,23 +22,27 @@ h2 {
 .content {
   background-color: white;
   border-radius: 1em;
-  padding: 1em;
+  padding: 0.5em;
   text-align: center;
 }
 
 .col-md-6 {
   padding: 0.5em;
-  padding-right: 0.75em;
+}
+
+.col-sm-3 {
+  padding: 0.25em;
+}
+
+.blue_background {
+  background-color: #F0F8FF;
+  /*border: 0.5em solid white;*/
+  border-radius: 1em;
+  padding: 1em;
 }
 
 
 /* Input */
-
-#input {
-  background-color: #F0F8FF;
-  border-radius: 1em;
-  padding: 1em;
-}
 
 label {
   display: block;
@@ -70,13 +74,7 @@ input {
 
 /* Output */
 
-#output {
-  background-color: #F0F8FF;
-  border-radius: 1em;
-  padding: 1em;
-}
-
-#converted_citation_container {
+#conversion_container {
   background-color: white;
   border-radius: 1em;
   padding: 1em;
@@ -98,7 +96,16 @@ input {
 
 #loading_gif {
   display: none;
-  /*border: 1px solid red;*/
-  width: 100%;
-  text-align: center;
+  height: 3em;
+}
+
+
+/* Instructions */
+
+#instructions_container {
+  margin-top: 1em;
+}
+
+h3 {
+  margin: 0.5em auto;
 }
