@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if error %} <p class=error><strong>Error:</strong>{{ error }}{% endif %}
+  <div id='input'>
+    <form id='input_form' action="/convert" >
+      <label for="input[text]">Westlaw Citation</label>
+      <textarea name="input[text]" id="input_text" cols="30" rows="8"></textarea>
+      <label for="input[pages]">Pages</label>
+      <input type="text" name="input[pages]" id="input_pages">
+      <input type="submit" id='input_submit' class='btn btn-primary'>
+    </form>
+  </div>
+
+  <div id='output'>
+    <label for="converted_citation">Converted Citation:</label>
+    <div id='converted_citation_container'>
+      <p name='converted_citation' id='converted_citation'></p>
+    </div>
+  </div>
+{% endblock %}
