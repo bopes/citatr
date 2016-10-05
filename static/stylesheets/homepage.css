@@ -22,6 +22,10 @@ h1 {
   text-align: center;
 }
 
+#loading_gif {
+  display: none;
+}
+
 
 /* Input */
 
