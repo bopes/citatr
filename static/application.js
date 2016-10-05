@@ -5,11 +5,14 @@ $(document).ready(function(){
   $inputText = $('#input_text');
   $inputPages = $('#input_pages')
 
+  $loadingGif = $('#loading_gif')
+
   $outputDiv = $('#output')
   $convertedCitation = $('#converted_citation');
 
   var receiveCitationInput = function(event){
     event.preventDefault();
+    showLoadingGif();
     $.ajax({
       url: '/convert',
       data: $inputForm.serialize()
@@ -20,6 +23,7 @@ $(document).ready(function(){
   };
 
   var receiveConvertedCitation = function(data){
+    hideLoadingGif();
     displayConvertedCitation(data['finalCitation']);
     setupChangeListeners();
   };
@@ -32,6 +36,14 @@ $(document).ready(function(){
   var displayConvertedCitation = function(citationText){
     $outputDiv.show();
     $convertedCitation.text(citationText);
+  };
+
+  var showLoadingGif = function(){
+    $loadingGif.show();
+  };
+
+  var hideLoadingGif = function(){
+    $loadingGif.hide();
   };
 
   $inputForm.on('submit',receiveCitationInput);
