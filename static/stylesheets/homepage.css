@@ -70,16 +70,14 @@ main {
   box-shadow: 0 0 1px var(--content-color);
 }
 
-.col-md-6 {
-  padding: 0.5em;
-}
-
-.col-sm-3 {
+.col {
   padding: 0.25em;
 }
 
+
 .cell {
   background-color: var(--cell-color);
+  margin: 0.5em;
   border-radius: 1em;
   padding: 1em;
   -moz-box-shadow: 0 0 1px var(--cell-color);
