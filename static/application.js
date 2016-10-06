@@ -1,78 +1,88 @@
 $(document).ready(function(){
 
-  $inputForm = $('#input_form');
-  $inputText = $('#input_text');
-  $inputPages = $('#input_pages');
+  // 1. DOM Elements
 
-  $loadingGif = $('#loading_gif');
+    $inputForm = $('#input_form');
+    $inputText = $('#input_text');
+    $inputPages = $('#input_pages');
 
-  $conversionError = $('#conversion_error');
-  $convertedCitation = $('#converted_citation');
+    $loadingGif = $('#loading_gif');
 
+    $conversionError = $('#conversion_error');
+    $convertedCitation = $('#converted_citation');
 
-  var receiveCitationInput = function(event){
-    event.preventDefault();
-    clearConversionContainer();
-    showLoadingGif();
-    inputData = $inputForm.serialize();
-    setTimeout(sendInputToConverter,750,inputData);
-  };
+  // 2. Method definitions
 
-  var sendInputToConverter = function(input){
-    convertInput(input);
-  };
+    // A. Citation Conversion/AJAX
 
-  var convertInput = function(input){
-    ajaxObj = {url: '/convert', data: input};
-    $.ajax(ajaxObj)
-      .done(receiveConvertedCitation)
-      .fail(displayConversionError);
-  };
+      var receiveCitationInput = function(event){
+        event.preventDefault();
+        clearConversionContainer();
+        showLoadingGif();
+        inputData = $inputForm.serialize();
+        setTimeout(convertInput,750,inputData);
+      };
 
-  var receiveConvertedCitation = function(data){
-    finalCitation = data['finalCitation'];
-    clearConversionContainer();
-    displayConvertedCitation(finalCitation);
-    setupChangeListeners();
-  };
+      var convertInput = function(input){
+        ajaxObj = {url: '/convert', data: input};
+        $.ajax(ajaxObj)
+          .done(receiveConvertedCitation)
+          .fail(displayConversionError);
+      };
 
-  var displayConvertedCitation = function(citationText){
-    $convertedCitation.text(citationText);
-    $convertedCitation.show();
-  };
+      var receiveConvertedCitation = function(data){
+        finalCitation = data['finalCitation'];
+        clearConversionContainer();
+        displayConvertedCitation(finalCitation);
+        setupChangeListeners();
+      };
 
-  var hideConvertedCitation = function(){
-    $convertedCitation.hide();
-  };
+    // B. DOM Manipulation
 
-  var displayConversionError = function(){
-    clearConversionContainer();
-    $conversionError.show();
-  };
+      // i. Conversion Container
+        var clearConversionContainer = function(){
+          hideConversionError();
+          hideConvertedCitation();
+          hideLoadingGif();
+        };
 
-  var hideConversionError = function(){
-    $conversionError.hide();
-  };
+      // ii. Converted Citation
+        var displayConvertedCitation = function(citationText){
+          $convertedCitation.text(citationText);
+          $convertedCitation.show();
+        };
 
-  var showLoadingGif = function(){
-    $loadingGif.show();
-  };
+        var hideConvertedCitation = function(){
+          $convertedCitation.hide();
+        };
 
-  var hideLoadingGif = function(){
-    $loadingGif.hide();
-  };
+      // iii. Conversion Error
+        var displayConversionError = function(){
+          clearConversionContainer();
+          $conversionError.show();
+        };
 
-  var clearConversionContainer = function(){
-    hideConversionError();
-    hideConvertedCitation();
-    hideLoadingGif();
-  };
+        var hideConversionError = function(){
+          $conversionError.hide();
+        };
 
-  var setupChangeListeners = function(){
-    $inputText.on('change',receiveCitationInput);
-    $inputPages.on('change',receiveCitationInput);
-  };
+      // iv. Loading Gif
+        var showLoadingGif = function(){
+          $loadingGif.show();
+        };
 
-  $inputForm.on('submit',receiveCitationInput);
+        var hideLoadingGif = function(){
+          $loadingGif.hide();
+        };
+
+    // C. jQuery Listeners
+      var setupChangeListeners = function(){
+        $inputText.on('change',receiveCitationInput);
+        $inputPages.on('change',receiveCitationInput);
+      };
+
+  // 3. Live code
+
+    $inputForm.on('submit',receiveCitationInput);
 
 });
