@@ -14,15 +14,20 @@ body {
   color: var(--text-color);
 }
 
-/* Layout */
-
 .wrapper {
   width: 80%;
   margin: 0 auto;
 }
 
-h1 {
-  margin: 0.25em auto;
+/* Header */
+
+header {
+  text-align: bottom;
+}
+
+.main_title {
+  display: inline-block;
+  margin: 9px auto;
 }
 
 hr {
@@ -36,6 +41,20 @@ hr {
   -webkit-box-shadow: 0 0 1px var(--text-color);
   box-shadow: 0 0 1px var(--text-color);
 }
+
+.nav {
+  min-height: 39.6px;
+  display: inline-block;
+  float: right;
+  margin-top: 9px;
+}
+
+.nav_link {
+  display: inline-block;
+  margin: 0 0.5em;
+  padding-top: 11px;
+}
+/* Main */
 
 main {
   margin: 1.5em auto;
