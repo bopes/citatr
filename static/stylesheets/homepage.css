@@ -30,6 +30,10 @@ header {
   margin: 9px auto;
 }
 
+a {
+  color: var(--content-color);
+}
+
 hr {
   display: block;
   height: 2px;
@@ -117,10 +121,6 @@ input {
 #input_submit {
   display: block;
   margin: 1em auto;
-}
-
-.btn-primary {
-  /*background-color: var(--content-color)*/
 }
 
 
