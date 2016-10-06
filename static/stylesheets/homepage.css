@@ -22,11 +22,23 @@ body {
 }
 
 h1 {
-  color: white;
+  margin: 0.25em auto;
 }
 
-h2 {
-  margin: 0 auto 0.5em;
+hr {
+  display: block;
+  height: 2px;
+  background-color: var(--text-color);
+  margin: 0 -2em;
+  border: 0;
+  padding: 0;
+  -moz-box-shadow: 0 0 1px var(--text-color);
+  -webkit-box-shadow: 0 0 1px var(--text-color);
+  box-shadow: 0 0 1px var(--text-color);
+}
+
+main {
+  margin: 1.5em auto;
 }
 
 .content {
@@ -54,6 +66,10 @@ h2 {
   -moz-box-shadow: 0 0 1px var(--cell-color);
   -webkit-box-shadow: 0 0 1px var(--cell-color);
   box-shadow: 0 0 1px var(--cell-color);
+}
+
+.cell_title {
+  margin: 0 auto 0.5em;
 }
 
 
@@ -126,7 +142,7 @@ input {
   margin-top: 1em;
 }
 
-h3 {
+.instruct_title {
   margin: 0.5em auto;
   color: var(--cell-color);
 }
