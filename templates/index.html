@@ -3,7 +3,7 @@
   {% if error %} <p class=error><strong>Error:</strong>{{ error }}{% endif %}
   <div class='content row'>
     <div id='input'class='col-md-6'>
-      <div class='blue_background'>
+      <div class='cell'>
         <h2>Initial Westlaw Citation</h2>
         <form id='input_form' action="/convert" >
           <!-- <label for="input[text]">Westlaw Citation</label> -->
@@ -16,7 +16,7 @@
     </div>
 
     <div id='output' class='col-md-6'>
-      <div class='blue_background'>
+      <div class='cell'>
         <h2>Converted Bluebook Citation</h2>
         <div id='conversion_container'>
           <p id='conversion_error'>Citation conversion error. Please make sure you have the current format!</p>
@@ -30,25 +30,25 @@
   <div id='instructions_container' class='content row'>
     <h3>Instructions</h3>
     <div class='col-sm-3'>
-      <div class='blue_background instruct'>
+      <div class='cell instruct'>
         <p class='instruct_text'>Copy/paste the Westlaw case citation into the box above.</p>
         <p class='instruct_num'>1</p>
       </div>
     </div>
     <div class='col-sm-3'>
-      <div class='blue_background instruct'>
+      <div class='cell instruct'>
         <p class='instruct_text'>Enter the pages referenced into the Pages text box.</p>
         <p class='instruct_num'>2</p>
       </div>
     </div>
     <div class='col-sm-3'>
-      <div class='blue_background instruct'>
+      <div class='cell instruct'>
         <p class='instruct_text'>Click 'Convert Citation' to generate Bluebook citation.</p>
         <p class='instruct_num'>3</p>
       </div>
     </div>
     <div class='col-sm-3'>
-      <div class='blue_background instruct'>
+      <div class='cell instruct'>
         <p class='instruct_text'>Copy the generated Bluebook citation. Done!</p>
         <p class='instruct_num'>4</p>
       </div>
