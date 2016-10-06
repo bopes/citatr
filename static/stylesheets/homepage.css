@@ -34,6 +34,9 @@ h2 {
   border-radius: 1em;
   padding: 0.5em;
   text-align: center;
+  -moz-box-shadow: 0 0 1px var(--content-color);
+  -webkit-box-shadow: 0 0 1px var(--content-color);
+  box-shadow: 0 0 1px var(--content-color);
 }
 
 .col-md-6 {
@@ -44,10 +47,13 @@ h2 {
   padding: 0.25em;
 }
 
-.blue_background {
+.cell {
   background-color: var(--cell-color);
   border-radius: 1em;
   padding: 1em;
+  -moz-box-shadow: 0 0 1px var(--cell-color);
+  -webkit-box-shadow: 0 0 1px var(--cell-color);
+  box-shadow: 0 0 1px var(--cell-color);
 }
 
 
@@ -80,11 +86,15 @@ input {
   margin: 1em auto;
 }
 
+.btn-primary {
+  /*background-color: var(--content-color)*/
+}
+
 
 /* Output */
 
 #conversion_container {
-  min-height: 68px;
+  min-height: 70px;
   background-color: white;
   border-radius: 1em;
   padding: 1em;
@@ -126,13 +136,11 @@ h3 {
 }
 
 .instruct_num {
-  /*padding: -5px;*/
   margin-bottom: -0.25em;
   font-size: 2em;
 }
 
 .instruct_text {
-  vertical-align: middle;
   margin: 0;
   padding: 4px;
   text-align: center;
