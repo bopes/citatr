@@ -1,10 +1,10 @@
 /* Boilerplate */
 
 :root {
-  --background-color: #B0C4DE;
-  --content-color: #FFFCFF;
-  --cell-color: #F0F8FF;
-  --text-color: #515151;
+  --background-color: #e8e8e8;
+  --content-color: #52658f;
+  --cell-color: #f7f5e6;
+  --text-color: #333a56;
 }
 
 
@@ -118,6 +118,7 @@ input {
 
 h3 {
   margin: 0.5em auto;
+  color: var(--cell-color);
 }
 
 .instruct {
@@ -126,6 +127,7 @@ h3 {
 
 .instruct_num {
   /*padding: -5px;*/
+  margin-bottom: -0.25em;
   font-size: 2em;
 }
 
