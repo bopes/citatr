@@ -27,20 +27,20 @@ def test(num, raw, real, pages):
   print("------")
 
 
-raw_6 = "903 So. 2d 913\nSupreme Court of Florida\nCRESCENT MIAMI CENTER, LLC, Petitioner,\nv.\nFLORIDA DEPARTMENT OF REVENUE, Respondent.\nNo. SC03-2063. May 19, 2005."
+raw_6 = "903 So. 2d 913\r\nSupreme Court of Florida\r\nCRESCENT MIAMI CENTER, LLC, Petitioner,\r\nv.\r\nFLORIDA DEPARTMENT OF REVENUE, Respondent.\r\nNo. SC03-2063. May 19, 2005."
 real_6 = "Crescent Miami Ctr., LLC, v. Fla. Dep't of Revenue, 903 So. 2d 913, 914-15 (Fla. 2005)."
 
-raw_7 = "132 S.W. 3d 501\nCourt of Appeals of Texas\nHouston (1st Dist.).\nMichael Marvin MCKITTRICK, Appellant,\nv.\nThe STATE of Texas, Appellee.\nNo. 01-03-00056-CR. Feb. 19, 2004. Petition for Discretionary Review Refused Aug. 31, 2004."
+raw_7 = "132 S.W. 3d 501\r\nCourt of Appeals of Texas\r\nHouston (1st Dist.).\r\nMichael Marvin MCKITTRICK, Appellant,\r\nv.\r\nThe STATE of Texas, Appellee.\r\nNo. 01-03-00056-CR. Feb. 19, 2004. Petition for Discretionary Review Refused Aug. 31, 2004."
 real_7 = "McKittrick v. State, 132 S.W. 3d 501, 502 (Tex. App. 2004)."
 
-raw_8 = "959 F. Supp. 1040\nUnited States District Court, E.D. Wisconsin.\nCarol RUSHMAN, Plaintiff\nv.\nCITY OF MILWAUKEE, Defendant.\nCivil Action No. 95-C-1096. March 27, 1997."
+raw_8 = "959 F. Supp. 1040\r\nUnited States District Court, E.D. Wisconsin.\r\nCarol RUSHMAN, Plaintiff\r\nv.\r\nCITY OF MILWAUKEE, Defendant.\r\nCivil Action No. 95-C-1096. March 27, 1997."
 real_8 = "Rushman v. City of Milwaukee, 959 F. Supp. 1040, 1042 (E.D. Wis. 1997)."
 
-raw_9 = "930 F.2d 204\nUnited States Court of Appeals,\nSecond Circuit.\nMarshall RATTNER, Marshall Rattner Inc., National Limousine Service, Inc., and Profession Indemnity Agency, Plaintiffs-Appellants,\nv.\nMalcolm NETBURN, John B. Farrington, and The Incorporated Village of Pleasantville, Defendants-Appellees.\nNo. 178, Docket 90-7317. Argued Oct. 1, 1990. Decided April 9, 1991."
+raw_9 = "930 F.2d 204\r\nUnited States Court of Appeals,\r\nSecond Circuit.\r\nMarshall RATTNER, Marshall Rattner Inc., National Limousine Service, Inc., and Profession Indemnity Agency, Plaintiffs-Appellants,\r\nv.\r\nMalcolm NETBURN, John B. Farrington, and The Incorporated Village of Pleasantville, Defendants-Appellees.\r\nNo. 178, Docket 90-7317. Argued Oct. 1, 1990. Decided April 9, 1991."
 real_9 = "Rattner v. Netburn, 930 F.2d 204, 210 (2d Cir. 1991)."
 
 # This Supreme Court case refers to 531 U.S. 98 - I don't know where this came from
-raw_10 = "121 S. Ct. 525\nSupreme Court of the United States\nGeorge W. BUSH, et al., Petitioners,\nv.\nAlbert GORE, Jr., et al.\nNo. 00-949. Argued Dec. 11, 2000 Dec. 12, 2000."
+raw_10 = "121 S. Ct. 525\r\nSupreme Court of the United States\r\nGeorge W. BUSH, et al., Petitioners,\r\nv.\r\nAlbert GORE, Jr., et al.\r\nNo. 00-949. Argued Dec. 11, 2000 Dec. 12, 2000."
 real_10 = "Bush v. Gore, 531 U.S. 98, 99–100 (2000)."
 
 
