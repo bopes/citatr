@@ -59,12 +59,17 @@ us_state_abbrvs = {
 
 def abbrev_state(str):
   abbrev_str = str
+  # Find replace state name with abbreviation
   for state, abbrev in us_state_abbrvs.items():
-    if state + "." in abbrev_str:
-      abbrev_str = abbrev_str.replace(state + ".", abbrev)
-    elif state in abbrev_str:
+    if state in abbrev_str:
       abbrev_str = abbrev_str.replace(state, abbrev)
+  # Remove any trailing punctuaction
+  if abbrev_str[-2] == '.':
+    abbrev_str = abbrev_str[:-1]
+  # Return abbreviated state
   return abbrev_str
+
+
 
 def find_state(str):
   for state in us_states:
