@@ -65,7 +65,7 @@ def abbrev_state(str):
       abbrev_str = abbrev_str.replace(state, abbrev)
   # Remove any trailing punctuaction
   if abbrev_str[-2] == '.':
-    abbrev_str = abbrev_str[:-1]
+    return abbrev_str[:-1]
   # Return abbreviated state
   return abbrev_str
 

@@ -41,18 +41,3 @@ def find_court(str1, str2):
     if court in str1:
       return courts[court](str1,str2)
   return states.find_state(str1) + " "
-  # court = str
-  # if str1 == "Supreme Court of the United States":
-  #   court = ""
-  # elif str1 == "United States Court of Appeals,":
-  #   for word in str2.split():
-  #     if word in general_reference.order_numerals.keys():
-  #       court = "%s Cir. " % general_reference.order_numerals[word]
-  # elif "United States District Court" in str1:
-  #   split_court = str1.split(", ")
-  #   court = states.abbrev_state(split_court[1]) + " "
-  # elif "Appeals" in str1:
-  #   court = "%s App. " % states.find_state(str1)
-  # else:
-  #   court = states.find_state(str1) + " "
-  # return court
