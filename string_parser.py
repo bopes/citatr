@@ -2,14 +2,6 @@ import states
 import party_name_exceptions
 import general_reference
 
-def find_state(str):
-  state_loc = ""
-  for state in states.us_states:
-    if state in str:
-      state_loc = states.us_state_abbrvs[state]
-      break
-  return state_loc
-
 def format_party_name(str):
   formatted_name = ""
   org_words = str.split()
@@ -43,16 +35,15 @@ def find_court(str1, str2):
     split_court = str1.split(", ")
     court = states.abbrev_state(split_court[1]) + " "
   elif "Appeals" in str1:
-    court = "%s App. " % find_state(str1)
+    court = "%s App. " % states.find_state(str1)
   else:
-    court = find_state(str1) + " "
+    court = states.find_state(str1) + " "
   return court
 
 
 def convert_citation(raw_citation, pages):
   citation_list = raw_citation.split('\r\n')
   case_id = citation_list[0]
-  # state = find_state(citation_list[1])
   court = find_court(citation_list[1], citation_list[2])
   v_location = citation_list.index('v.')
   raw_party_1 = citation_list[v_location - 1]
