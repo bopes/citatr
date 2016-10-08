@@ -65,3 +65,9 @@ def abbrev_state(str):
     elif state in abbrev_str:
       abbrev_str = abbrev_str.replace(state, abbrev)
   return abbrev_str
+
+def find_state(str):
+  for state in us_states:
+    if state in str:
+      return us_state_abbrvs[state]
+  return ""
