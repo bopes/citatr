@@ -44,6 +44,11 @@ remaining_caps = [
 
 # Capitalization functions
 
+def is_capitalized(word):
+  if word == word.upper() and word not in general_reference.initials:
+    return True
+  return False
+
 def has_lowercase_prefix(word):
   for prefix in lowercase_prefixes:
     if word.startswith(prefix):
@@ -59,7 +64,7 @@ def capitalize_with_prefix(word):
       return prefix + rest_of_word.capitalize()
 
 def part_of_party_name(word):
-  if word == word.upper() and word not in general_reference.initials:
+  if is_capitalized(word):
     return True
   elif has_lowercase_prefix(word):
     return True
