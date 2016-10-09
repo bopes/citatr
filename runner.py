@@ -4,13 +4,6 @@ try:
 except NameError:
     pass
 
-# pages = input("What pages are referred? ")
-
-# troubleshooting comparison:
-# for i in range(len(real_6)):
-#   print(real_6[i], real_6[i] == generated_6[i] )
-# troubleshooting comparison:
-
 def test(num, raw, real, pages):
   generated = string_parser.convert_citation(raw,pages)
   correct_citation = generated == real
