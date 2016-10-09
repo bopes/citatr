@@ -44,6 +44,12 @@ def has_lowercase_prefix(word):
         return True
   return False
 
+def capitalize_with_prefix(word):
+  for prefix in lowercase_prefixes:
+    if word.startswith(prefix):
+      rest_of_word = word.replace(prefix,"")
+      return prefix + rest_of_word.capitalize()
+
 def part_of_party_name(word):
   if word == word.upper() and word not in general_reference.initials:
     return True
@@ -72,10 +78,7 @@ def correct_capitalization(word):
   elif states.find_state(word.capitalize()):
     return states.find_state(word.capitalize())
   elif has_lowercase_prefix(word):
-    for prefix in lowercase_prefixes:
-      if word.startswith(prefix):
-        rest_of_word = word.replace(prefix,"")
-        return prefix + rest_of_word.capitalize()
+    return capitalize_with_prefix(word)
   else:
     return word.capitalize()
   output += " "
