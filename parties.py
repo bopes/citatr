@@ -3,6 +3,9 @@ import states
 
 import string
 
+
+# Captialization & Punctuation Exceptions Storage
+
 capitalized_acronyms = [
   "LLC",
   "LLC,"
@@ -18,15 +21,6 @@ allowed_lowers = {
   'OF': 'of',
 }
 
-converters = [
-  allowed_abbrvs,
-  allowed_lowers
-]
-
-nonconverters = [
-  capitalized_acronyms
-]
-
 trailing_punc = [
   'LLC'
 ]
@@ -35,6 +29,20 @@ lowercase_prefixes = [
   'Mc',
   'Mac'
 ]
+
+
+# Higher level list and dict storage
+
+standard_words = [
+  allowed_abbrvs,
+  allowed_lowers
+]
+
+remaining_caps = [
+  capitalized_acronyms
+]
+
+# Capitalization functions
 
 def has_lowercase_prefix(word):
   for prefix in lowercase_prefixes:
@@ -57,31 +65,39 @@ def part_of_party_name(word):
     return True
   return False
 
-def converted(word):
-  for converter in converters:
-    if word in converter.keys():
-      return converter[word]
+def standard_word(word):
+  for stan_dict in standard_words:
+    if word in stan_dict.keys():
+      return stan_dict[word]
   return False
 
-def nonconverted(word):
-  for nonconverter in nonconverters:
-    if word in nonconverter:
+def remain_caps(word):
+  for cap_list in remaining_caps:
+    if word in cap_list:
       return word
   return False
 
 def correct_capitalization(word):
   output = ""
-  if converted(word):
-    return converted(word)
-  elif nonconverted(word):
+  # check if word has standard abbreviation or styling
+  if standard_word(word):
+    return standard_word(word)
+  # check if word should remain all caps
+  elif remain_caps(word):
     return word
+  # check if word is a state (needs to be capitalized)
   elif states.find_state(word.capitalize()):
     return states.find_state(word.capitalize())
+  # check if word is all caps except for a prefix
   elif has_lowercase_prefix(word):
     return capitalize_with_prefix(word)
+  # capitalize the word normally
   else:
     return word.capitalize()
   output += " "
+
+
+# Punctuation Functions
 
 def keep_trailing_punc(party_name):
   if party_name[-2] in string.punctuation:
@@ -102,6 +118,9 @@ def correct_trailing_punc(party_name):
     return party_name[:-2]
   else:
     return party_name[:-1]
+
+
+# Callable Execution Functions
 
 def get_party_name(party):
   party_list, party_name = party.split(), ""
