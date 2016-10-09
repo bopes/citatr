@@ -69,8 +69,6 @@ def abbrev_state(str):
   # Return abbreviated state
   return abbrev_str
 
-
-
 def find_state(string):
   for state in us_states:
     if state in string:
