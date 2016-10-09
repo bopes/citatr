@@ -39,10 +39,10 @@ def format_party_name(str):
   return formatted_name
 
 
-def find_parties(ary):
-  v_location = ary.index('v.')
-  raw_party_1 = ary[v_location - 1]
+def find_parties(citation_list):
+  v_location = citation_list.index('v.')
+  raw_party_1 = citation_list[v_location - 1]
   party_1 = format_party_name(raw_party_1)
-  raw_party_2 = ary[v_location + 1]
+  raw_party_2 = citation_list[v_location + 1]
   party_2 = format_party_name(raw_party_2)
   return party_1, party_2
