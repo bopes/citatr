@@ -80,17 +80,22 @@ def correct_capitalization(word):
     return word.capitalize()
   output += " "
 
-def has_trailing_punc(party_name):
+def keep_trailing_punc(party_name):
   if party_name[-2] in string.punctuation:
     for punc_word in trailing_punc:
       if party_name[:-2].endswith(punc_word):
         return True
   return False
 
+def remove_trailing_punc(party_name):
+  if party_name[-2] in string.punctuation:
+    return True
+  return False
+
 def correct_trailing_punc(party_name):
-  if has_trailing_punc(party_name):
+  if keep_trailing_punc(party_name):
     return party_name[:-1]
-  elif party_name[-2] in string.punctuation:
+  elif remove_trailing_punc(party_name):
     return party_name[:-2]
   else:
     return party_name[:-1]
