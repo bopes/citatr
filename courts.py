@@ -36,8 +36,8 @@ sorted_courts = [
   "Appeals"
 ]
 
-def find_court(citation_ary):
-  str1, str2 = citation_ary[1], citation_ary[2]
+def find_court(citation_list):
+  str1, str2 = citation_list[1], citation_list[2]
   for court in sorted_courts:
     if court in str1:
       return courts[court](str1,str2)
