@@ -1,8 +1,4 @@
 import string_parser
-try:
-    input = raw_input
-except NameError:
-    pass
 
 def test(num, raw, real, pages):
   generated = string_parser.convert_citation(raw,pages)
@@ -23,7 +19,7 @@ def test(num, raw, real, pages):
 raw_6 = "903 So. 2d 913\r\nSupreme Court of Florida\r\nCRESCENT MIAMI CENTER, LLC, Petitioner,\r\nv.\r\nFLORIDA DEPARTMENT OF REVENUE, Respondent.\r\nNo. SC03-2063. May 19, 2005."
 real_6 = "Crescent Miami Ctr., LLC, v. Fla. Dep't of Revenue, 903 So. 2d 913, 914-15 (Fla. 2005)."
 
-raw_7 = "132 S.W. 3d 501\r\nCourt of Appeals of Texas\r\nHouston (1st Dist.).\r\nMichael Marvin MCKITTRICK, Appellant,\r\nv.\r\nThe STATE of Texas, Appellee.\r\nNo. 01-03-00056-CR. Feb. 19, 2004. Petition for Discretionary Review Refused Aug. 31, 2004."
+raw_7 = "132 S.W. 3d 501\r\nCourt of Appeals of Texas\r\nHouston (1st Dist.).\r\nMichael Marvin McKITTRICK, Appellant,\r\nv.\r\nThe STATE of Texas, Appellee.\r\nNo. 01-03-00056-CR. Feb. 19, 2004. Petition for Discretionary Review Refused Aug. 31, 2004."
 real_7 = "McKittrick v. State, 132 S.W. 3d 501, 502 (Tex. App. 2004)."
 
 raw_8 = "959 F. Supp. 1040\r\nUnited States District Court, E.D. Wisconsin.\r\nCarol RUSHMAN, Plaintiff\r\nv.\r\nCITY OF MILWAUKEE, Defendant.\r\nCivil Action No. 95-C-1096. March 27, 1997."
