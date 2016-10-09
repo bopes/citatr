@@ -1,2 +1,2 @@
-def find_reporter(citation_ary):
-  return citation_ary[0]
+def find_reporter(citation_list):
+  return citation_list[0]
