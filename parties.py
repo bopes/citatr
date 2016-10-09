@@ -37,3 +37,12 @@ def format_party_name(str):
   else:
     formatted_name = formatted_name[:-1]
   return formatted_name
+
+
+def find_parties(ary):
+  v_location = ary.index('v.')
+  raw_party_1 = ary[v_location - 1]
+  party_1 = format_party_name(raw_party_1)
+  raw_party_2 = ary[v_location + 1]
+  party_2 = format_party_name(raw_party_2)
+  return party_1, party_2
