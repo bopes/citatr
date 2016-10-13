@@ -13,10 +13,10 @@ app.config.from_object(__name__)
 def index():
   return render_template('index.html')
 
-@app.route("/convert", methods=["GET","POST"])
+@app.route("/convert", methods=["GET"])
 def convert():
-  cit_input = request.args.get('input[text]','CITATION',type=str)
+  input_citation = request.args.get('input[text]','CITATION',type=str)
   pages = request.args.get('input[pages]','PAGES',type=str)
-  finalCitation = string_parser.convert_citation(cit_input, pages)
-  output = {'finalCitation': finalCitation}
+  final_citation = string_parser.convert_citation(input_citation, pages)
+  output = {'finalCitation': final_citation}
   return jsonify(output)

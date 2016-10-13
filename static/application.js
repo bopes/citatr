@@ -48,7 +48,7 @@ $(document).ready(function(){
 
       // ii. Converted Citation
         var displayConvertedCitation = function(citationText){
-          $convertedCitation.text(citationText);
+          $convertedCitation.html(citationText);
           $convertedCitation.show();
         };
 
