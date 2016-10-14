@@ -13,7 +13,7 @@ app.config.from_object(__name__)
 def index():
   return render_template('index.html')
 
-@app.route("/convert", methods=["GET"])
+@app.route("/convert")
 def convert():
   input_citation = request.args.get('input[text]','CITATION',type=str)
   pages = request.args.get('input[pages]','PAGES',type=str)
