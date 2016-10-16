@@ -10,15 +10,21 @@ app.config.from_object(__name__)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    DEBUG=True,
     SECRET_KEY='development key',
     USERNAME='bigep',
     PASSWORD='yankeehotelfoxtrot'
 ))
 
-@app.route("/", methods=["GET","POST"])
+
+@app.route("/")
+def root():
+  if session.get('logged_in'):
+    return render_template('index.html')
+  return render_template('login.html')
+
+
+@app.route("/login", methods=["GET","POST"])
 def login():
-  session['logged_in'] = False
   error = None
   if request.method == "POST":
     if request.form['username'] == app.config['USERNAME'] and request.form['password'] == app.config['PASSWORD']:
@@ -28,7 +34,15 @@ def login():
       error = 'Invalid credentials'
       return render_template('login.html', error=error)
   else:
-    return render_template('login.html')
+    if not session.get('logged_in'):
+      return render_template('login.html')
+    return redirect(url_for('index'))
+
+
+@app.route("/logout")
+def logout():
+  session['logged_in'] = False
+  return redirect(url_for('login'))
 
 
 @app.route("/index")
@@ -42,12 +56,12 @@ def index():
 def convert():
   if not session.get('logged_in'):
     return redirect(url_for('login'))
+  check_logged_in()
   input_citation = request.args.get('input[text]','CITATION',type=str)
   pages = request.args.get('input[pages]','PAGES',type=str)
   final_citation = string_parser.convert_citation(input_citation, pages)
   output = {'finalCitation': final_citation}
   return jsonify(output)
-
 
 
 if __name__ == '__main__':
