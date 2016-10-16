@@ -29,9 +29,10 @@ def login():
   if request.method == "POST":
     if request.form['username'] == app.config['USERNAME'] and request.form['password'] == app.config['PASSWORD']:
       session['logged_in'] = True
+      flash('Successfully logged in.')
       return redirect(url_for('index'))
     else:
-      error = 'Invalid credentials'
+      error = 'Invalid credentials.'
       return render_template('login.html', error=error)
   else:
     if not session.get('logged_in'):
@@ -42,6 +43,7 @@ def login():
 @app.route("/logout")
 def logout():
   session['logged_in'] = False
+  flash('Successfully logged out.')
   return redirect(url_for('login'))
 
 
