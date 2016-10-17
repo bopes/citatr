@@ -46,7 +46,7 @@ class CitatrTestCase(unittest.TestCase):
     assert b'Login' in rv.data
     # Access /index while logged in
     rv = self.login('bigep', 'yankeehotelfoxtrot')
-    assert b'Successfully logged in.' in rv.data
+    assert b'Initial Westlaw Citation' in rv.data
     # Access root while logged in
     rv = self.get_root()
     assert  b'Initial Westlaw Citation' in rv.data
