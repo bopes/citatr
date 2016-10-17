@@ -54,13 +54,12 @@ def index():
   return render_template('index.html')
 
 
-@app.route("/convert")
+@app.route("/convert", methods=['GET'])
 def convert():
   if not session.get('logged_in'):
     return redirect(url_for('login'))
-  check_logged_in()
-  input_citation = request.args.get('input[text]','CITATION',type=str)
-  pages = request.args.get('input[pages]','PAGES',type=str)
+  input_citation = request.args.get('input_text','CITATION',type=str)
+  pages = request.args.get('input_pages','PAGES',type=str)
   final_citation = string_parser.convert_citation(input_citation, pages)
   output = {'finalCitation': final_citation}
   return jsonify(output)
