@@ -5,11 +5,11 @@
     <div id='input'class='col col-md-6'>
       <div class='cell'>
         <h2 class='cell_title'>Initial Westlaw Citation</h2>
-        <form id='input_form' action="/convert" >
-          <!-- <label for="input[text]">Westlaw Citation</label> -->
-          <textarea name="input[text]" id="input_text" cols="30" rows="8"></textarea>
-          <label for="input[pages]">Pages</label>
-          <input type="text" name="input[pages]" id="input_pages">
+        <form id='input_form' action="{{ url_for('convert') }}" >
+          <!-- <label for="input_text">Westlaw Citation</label> -->
+          <textarea name="input_text" id="input_text" cols="30" rows="8"></textarea>
+          <label for="input_pages">Pages</label>
+          <input type="text" name="input_pages" id="input_pages">
           <input type="submit" id='input_submit' class='btn btn-primary' value='Convert Citation'>
         </form>
       </div>
