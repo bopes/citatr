@@ -57,7 +57,7 @@ def index():
 @app.route("/convert", methods=['POST'])
 def convert():
   if not session.get('logged_in'):
-    return redirect(url_for('login'))
+    abort(401)
   input_citation = request.form['input_text']
   pages = request.form['input_pages']
   final_citation = string_parser.convert_citation(input_citation, pages)
