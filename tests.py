@@ -32,7 +32,6 @@ class CitatrTestCase(unittest.TestCase):
     return self.app.get('/logout', follow_redirects=True)
 
   def convert_citation(self, citation, pages):
-    query = {'input_citation': citation, 'input_pages': pages}
     return self.app.post('/convert', data=dict(
       input_text=citation,
       input_pages=pages
@@ -65,6 +64,7 @@ class CitatrTestCase(unittest.TestCase):
     # Convert while not logged in
     rv = self.convert_citation(test_citation, '914-15')
     assert b'401 Unauthorized' in rv.data
+    assert test_citation_result not in rv.data
     # Convert while logged in
     self.login('bigep', 'yankeehotelfoxtrot')
     rv = self.convert_citation(test_citation, '914-15')
