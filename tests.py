@@ -51,7 +51,7 @@ class CitatrTestCase(unittest.TestCase):
   def test_conversion(self):
     self.login('bigep', 'yankeehotelfoxtrot')
     rv = self.convert_citation(test_citation, '914-15')
-    print(rv)
+    print(rv.data)
 
 if __name__ == '__main__':
   unittest.main()
