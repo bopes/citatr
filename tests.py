@@ -3,7 +3,8 @@ import citatr
 import unittest
 import tempfile
 
-import flask
+
+# Variables
 
 test_citation = "903 So. 2d 913\r\nSupreme Court of Florida\r\nCRESCENT MIAMI CENTER, LLC, Petitioner,\r\nv.\r\nFLORIDA DEPARTMENT OF REVENUE, Respondent.\r\nNo. SC03-2063. May 19, 2005."
 
@@ -25,16 +26,17 @@ class CitatrTestCase(unittest.TestCase):
     return self.app.post('/login', data=dict(
       username=username,
       password=password
-    ), follow_redirects=True)
+      ), follow_redirects=True)
 
   def logout(self):
     return self.app.get('/logout', follow_redirects=True)
 
   def convert_citation(self, citation, pages):
     query = {'input_citation': citation, 'input_pages': pages}
-    return self.app.get('/convert', query_string=dict(
+    return self.app.post('/convert', data=dict(
       input_text=citation,
-      input_pages=pages))
+      input_pages=pages
+      ), follow_redirects=True)
 
 
   # Tests
@@ -54,6 +56,8 @@ class CitatrTestCase(unittest.TestCase):
     assert b'Invalid credentials.' in rv.data
 
   def test_conversion(self):
+    # rv = self.convert_citation(test_citation, '914-15')
+    # assert b'Login' in rv.data
     self.login('bigep', 'yankeehotelfoxtrot')
     rv = self.convert_citation(test_citation, '914-15')
     assert test_citation_result in rv.data

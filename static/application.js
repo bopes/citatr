@@ -24,7 +24,7 @@ $(document).ready(function(){
       };
 
       var convertInput = function(input){
-        ajaxObj = {url: '/convert', data: input};
+        ajaxObj = {url: '/convert', method: 'POST', data: input};
         $.ajax(ajaxObj)
           .done(receiveConvertedCitation)
           .fail(displayConversionError);
