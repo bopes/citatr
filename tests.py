@@ -42,22 +42,30 @@ class CitatrTestCase(unittest.TestCase):
   # Tests
 
   def test_login_logout(self):
+    # Access root while not logged in
     rv = self.get_root()
     assert b'Login' in rv.data
+    # Access /index while logged in
     rv = self.login('bigep', 'yankeehotelfoxtrot')
     assert b'Successfully logged in.' in rv.data
+    # Access root while logged in
     rv = self.get_root()
     assert  b'Initial Westlaw Citation' in rv.data
+    # Access /login while logged out
     rv = self.logout()
     assert b'Successfully logged out.' in rv.data
+    # Access root after logging out
     rv = self.get_root()
     assert b'Login' in rv.data
+    # Attempt login with invalid credentials
     rv = self.login('bad', 'credentials')
     assert b'Invalid credentials.' in rv.data
 
   def test_conversion(self):
-    # rv = self.convert_citation(test_citation, '914-15')
-    # assert b'Login' in rv.data
+    # Convert while not logged in
+    rv = self.convert_citation(test_citation, '914-15')
+    assert b'401 Unauthorized' in rv.data
+    # Convert while logged in
     self.login('bigep', 'yankeehotelfoxtrot')
     rv = self.convert_citation(test_citation, '914-15')
     assert test_citation_result in rv.data
