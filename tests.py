@@ -7,10 +7,12 @@ import flask
 
 test_citation = "903 So. 2d 913\r\nSupreme Court of Florida\r\nCRESCENT MIAMI CENTER, LLC, Petitioner,\r\nv.\r\nFLORIDA DEPARTMENT OF REVENUE, Respondent.\r\nNo. SC03-2063. May 19, 2005."
 
-test_citation_result = "Crescent Miami Ctr., LLC, v. Fla. Dep't of Revenue, 903 So. 2d 913, 914-15 (Fla. 2005)."
+test_citation_result = b"Crescent Miami Ctr., LLC, v. Fla. Dep't of Revenue, 903 So. 2d 913, 914-15 (Fla. 2005)."
 
 
 class CitatrTestCase(unittest.TestCase):
+
+  # Set up methods
 
   def setUp(self):
     citatr.app.config['TESTING'] = True
@@ -34,6 +36,9 @@ class CitatrTestCase(unittest.TestCase):
       input_text=citation,
       input_pages=pages))
 
+
+  # Tests
+
   def test_login_logout(self):
     rv = self.get_root()
     assert b'Login' in rv.data
@@ -51,7 +56,7 @@ class CitatrTestCase(unittest.TestCase):
   def test_conversion(self):
     self.login('bigep', 'yankeehotelfoxtrot')
     rv = self.convert_citation(test_citation, '914-15')
-    print(rv.data)
+    assert test_citation_result in rv.data
 
 if __name__ == '__main__':
   unittest.main()
