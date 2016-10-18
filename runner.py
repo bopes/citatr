@@ -1,7 +1,7 @@
-import string_parser
+from converter_pkg import converter
 
 def test(num, raw, real, pages):
-  generated = string_parser.convert_citation(raw,pages)
+  generated = converter.convert_citation(raw,pages)
   correct_citation = generated == real
   if correct_citation:
     print("#%i: PASS" % (num))

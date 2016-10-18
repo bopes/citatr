@@ -1,8 +1,4 @@
-import courts
-import parties
-import reporters
-import states
-import years
+from converter_pkg import courts, parties, reporters, states, years
 
 def convert_citation(input_citation, pages):
   citation_list = input_citation.split('\r\n')

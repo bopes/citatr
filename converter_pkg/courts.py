@@ -1,6 +1,4 @@
-import general_reference
-import states
-
+from converter_pkg import general_reference, states
 
 # Court methods
 

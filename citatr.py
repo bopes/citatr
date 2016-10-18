@@ -2,7 +2,7 @@
 import os
 from flask import Flask, request, session, g, redirect, url_for, abort,render_template, flash, json, jsonify
 # citatr imports
-import string_parser
+from converter_pkg import converter
 
 # create our little application :)
 app = Flask(__name__)
@@ -59,7 +59,7 @@ def convert():
     abort(401)
   input_citation = request.form['input_text']
   pages = request.form['input_pages']
-  final_citation = string_parser.convert_citation(input_citation, pages)
+  final_citation = converter.convert_citation(input_citation, pages)
   output = {'finalCitation': final_citation}
   return jsonify(output)
 
