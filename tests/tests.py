@@ -3,10 +3,10 @@ import sys
 import unittest
 import tempfile
 
-root = os.path.join(os.path.dirname(__file__), "..")
-sys.path.append(root)
+root_path = os.path.join(os.path.dirname(__file__), "..")
+sys.path.append(root_path)
 
-import citatr
+from citatr import app
 
 # Variables
 
@@ -20,8 +20,8 @@ class CitatrTestCase(unittest.TestCase):
   # Set up methods
 
   def setUp(self):
-    citatr.app.config['TESTING'] = True
-    self.app = citatr.app.test_client()
+    app.config['TESTING'] = True
+    self.app = app.test_client()
 
   def get_root(self):
     return self.app.get('/', follow_redirects=True)
