@@ -9,7 +9,7 @@ import sys
 root = os.path.join(os.path.dirname(__file__), "..")
 sys.path.append(root)
 
-from converter_pkg import converter
+from citatr.converter_pkg import converter
 
 total_count, fail_count, fails = 0, 0, []
 
