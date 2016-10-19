@@ -1,1 +1,1 @@
- web: python citatr.py
+web: python run.py
