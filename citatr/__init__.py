@@ -5,11 +5,10 @@ import sqlite3
 
 # create our little application :)
 app = Flask(__name__)
-# ctx = app.app_context()
-# ctx.push()
-
-# with ctx:
-#     pass
+ctx = app.app_context()
+ctx.push()
+with ctx:
+    pass
 
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'citatr.db'),
@@ -36,13 +35,9 @@ def init_db():
   db = get_db()
   with app.open_resource('db/schema.sql', mode='r') as f:
     db.cursor().executescript(f.read())
+  db.execute('INSERT INTO users (username, password) values (?, ?)', [app.config['USERNAME'], app.config['PASSWORD']])
   db.commit()
-  print('* Initialized database')
-
-@app.cli.command('initdb')
-def initdb_command():
-  init_db()
-  print("Database initialized")
+  print(' * Initialized database')
 
 # Close database connection
 @app.teardown_appcontext
