@@ -2,6 +2,7 @@
 from flask import Flask, g
 import os
 import sqlite3
+import bcrypt
 
 # create our little application :)
 app = Flask(__name__)
@@ -35,8 +36,13 @@ def init_db():
   db = get_db()
   with app.open_resource('db/schema.sql', mode='r') as f:
     db.cursor().executescript(f.read())
-  db.execute('INSERT INTO users (username, password) values (?, ?)', [app.config['USERNAME'], app.config['PASSWORD']])
+
+  encoded_pw = bytes(app.config['PASSWORD'], 'utf-8')
+  hashed_pw = bcrypt.hashpw(encoded_pw, bcrypt.gensalt())
+
+  db.execute('INSERT INTO users (username, password) values (?, ?)', [app.config['USERNAME'], hashed_pw])
   db.commit()
+
   print(' * Initialized database')
 
 # Close database connection

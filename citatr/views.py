@@ -1,5 +1,6 @@
 # flask imports
 from flask import request, session, g, redirect, url_for, abort,render_template, flash, json, jsonify
+import bcrypt
 # import citatr app
 from citatr import app, get_db
 # citatr imports
@@ -17,15 +18,21 @@ def login():
   error = None
   if request.method == "POST":
     db = get_db()
-    cmd = "SELECT id FROM users WHERE username=? AND password=?"
-    user = db.execute(cmd, (request.form['username'],request.form['password']))
-    valid_user = user.fetchall()
-    if valid_user:
-      session['logged_in'] = True
-      return redirect(url_for('index'))
-    else:
-      error = 'Invalid credentials.'
-      return render_template('login.html', error=error)
+    # Encode the user provided password for hash comparison
+    given_pw = bytes(request.form['password'], 'utf-8')
+    # Check for the given username in databse (SQLi safe)
+    cmd = "SELECT * FROM users WHERE username=?"
+    user = db.execute(cmd,(request.form['username'],)).fetchone()
+    # Check that the username exists
+    if user:
+      saved_pw = user[2]
+      # Validate the provided password and log in
+      if bcrypt.hashpw(given_pw, saved_pw) == saved_pw:
+        session['logged_in'] = True
+        return redirect(url_for('index'))
+    # Invalid credential handling
+    error = 'Invalid credentials.'
+    return render_template('login.html', error=error)
   else:
     if not session.get('logged_in'):
       return render_template('login.html')
