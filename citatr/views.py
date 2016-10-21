@@ -20,16 +20,13 @@ def login():
     db = get_db()
     # Encode the user provided password for hash comparison
     given_pw = bytes(request.form['password'], 'utf-8')
-    # Check for the given username in databse (SQLi safe)
+    # Find the given username in databse (SQLi safe)
     cmd = "SELECT * FROM users WHERE username=?"
     user = db.execute(cmd,(request.form['username'],)).fetchone()
-    # Check that the username exists
-    if user:
-      saved_pw = user[2]
-      # Validate the provided password and log in
-      if bcrypt.hashpw(given_pw, saved_pw) == saved_pw:
-        session['logged_in'] = True
-        return redirect(url_for('index'))
+    # Check that the user exists and password validates
+    if user and bcrypt.hashpw(given_pw, user[2]) == user[2]:
+      session['logged_in'] = True
+      return redirect(url_for('index'))
     # Invalid credential handling
     error = 'Invalid credentials.'
     return render_template('login.html', error=error)
