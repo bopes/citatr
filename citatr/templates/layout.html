@@ -27,12 +27,16 @@
           <h3 class='nav_link'><a href="#">Contact</a></h3>
           <h3 class='nav_link'><a href="{{ url_for('logout') }}">Log Out</a></h3>
         </div>
+      {% else %}
+        <div class='nav'>
+          <h3 class='nav_link'><a href="{{ url_for('signup') }}">Create Account</a></h3>
+        </div>
       {% endif %}
       <hr>
     </header>
     <main>
-      {% for message in get_flashed_messages() %}<div class=flash>{{ message }}</div>{% endfor %}
-      {% if error %}<p class=error><strong>Error:</strong>{{ " " + error }}{% endif %}
+      {% for message in get_flashed_messages() %}<div class='alert success'><strong>Success:</strong>{{ " " + message }}</div>{% endfor %}
+      {% if error %}<p class='alert error'><strong>Error:</strong>{{ " " + error }}{% endif %}
       {% block body %}{% endblock %}
     </main>
     <footer>
