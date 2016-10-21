@@ -56,7 +56,7 @@ class CitatrTestCase(unittest.TestCase):
     assert  b'Initial Westlaw Citation' in rv.data
     # Access /login while logged out
     rv = self.logout()
-    assert b'Successfully logged out.' in rv.data
+    assert b'Account logged out.' in rv.data
     # Access root after logging out
     rv = self.get_root()
     assert b'Login' in rv.data
