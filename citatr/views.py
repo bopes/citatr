@@ -1,7 +1,7 @@
 # flask imports
 from flask import request, session, g, redirect, url_for, abort,render_template, flash, json, jsonify
 # import citatr app
-from citatr import app
+from citatr import app, get_db
 # citatr imports
 from citatr.converter_pkg import converter
 
@@ -16,7 +16,11 @@ def root():
 def login():
   error = None
   if request.method == "POST":
-    if request.form['username'] == app.config['USERNAME'] and request.form['password'] == app.config['PASSWORD']:
+    db = get_db()
+    cmd = "SELECT id FROM users WHERE username=? AND password=?"
+    user = db.execute(cmd, (request.form['username'],request.form['password']))
+    valid_user = user.fetchall()
+    if valid_user:
       session['logged_in'] = True
       return redirect(url_for('index'))
     else:
