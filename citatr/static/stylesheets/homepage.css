@@ -1,7 +1,8 @@
 /* Boilerplate */
 
 :root {
-  --background-color: #e8e8e8;
+  /*--background-color: #e8e8e8;*/
+  --background-color: white;
   --content-color: #52658f;
   --cell-color: #f7f5e6;
   --text-color: #333a56;
@@ -41,9 +42,9 @@ hr {
   margin: 0 -2em;
   border: 0;
   padding: 0;
-  -moz-box-shadow: 0 0 1px var(--text-color);
-  -webkit-box-shadow: 0 0 1px var(--text-color);
-  box-shadow: 0 0 1px var(--text-color);
+  /*-moz-box-shadow: 0 0 1px var(--text-color);*/
+  /*-webkit-box-shadow: 0 0 1px var(--text-color);*/
+  /*box-shadow: 0 0 1px var(--text-color);*/
 }
 
 .nav {
@@ -69,9 +70,9 @@ main {
   border-radius: 1em;
   padding: 0.5em;
   text-align: center;
-  -moz-box-shadow: 0 0 1px var(--content-color);
-  -webkit-box-shadow: 0 0 1px var(--content-color);
-  box-shadow: 0 0 1px var(--content-color);
+  /*-moz-box-shadow: 0 0 1px var(--content-color);*/
+  /*-webkit-box-shadow: 0 0 1px var(--content-color);*/
+  /*box-shadow: 0 0 1px var(--content-color);*/
 }
 
 .col {
@@ -84,15 +85,37 @@ main {
   margin: 0.5em;
   border-radius: 1em;
   padding: 1em;
-  -moz-box-shadow: 0 0 1px var(--cell-color);
-  -webkit-box-shadow: 0 0 1px var(--cell-color);
-  box-shadow: 0 0 1px var(--cell-color);
+  /*-moz-box-shadow: 0 0 1px var(--cell-color);*/
+  /*-webkit-box-shadow: 0 0 1px var(--cell-color);*/
+  /*box-shadow: 0 0 1px var(--cell-color);*/
 }
 
 .cell_title {
   margin: 0 auto 0.5em;
 }
 
+dd {
+  margin-bottom: 1em;
+}
+
+/* Error and Flash Messages */
+
+.alert {
+  border-radius: 0.75em;
+  padding: 0.75em;
+}
+
+.error {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+}
+
+.success {
+  color: #3c763d;;
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;;
+}
 
 /* Input */
 
