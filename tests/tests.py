@@ -19,6 +19,8 @@ class CitatrTestCase(unittest.TestCase):
 
   # Set up methods
 
+
+
   def setUp(self):
     app.config['TESTING'] = True
     self.app = app.test_client()
