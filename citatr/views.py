@@ -2,7 +2,7 @@
 from flask import request, session, g, redirect, url_for, abort,render_template, flash, json, jsonify
 import bcrypt
 # import citatr app
-from citatr import app, get_db
+from citatr import app, db
 # citatr imports
 from citatr.converter_pkg import converter
 
@@ -17,12 +17,12 @@ def root():
 def login():
   error = None
   if request.method == "POST":
-    db = get_db()
+    d = db.get_db()
     # Encode the user provided password for hash comparison
     encode_pw = bytes(request.form['password'], 'utf-8')
     # Find the given username in databse (SQLi safe)
     cmd = "SELECT * FROM users WHERE username=?"
-    user = db.execute(cmd,(request.form['username'],)).fetchone()
+    user = d.execute(cmd,(request.form['username'],)).fetchone()
     # Check that the user exists and password validates
     if user and bcrypt.hashpw(encode_pw, user[2]) == user[2]:
       session['logged_in'] = True
@@ -66,12 +66,12 @@ def signup():
       error = 'Password and password confirmation must match.'
       return render_template('signup')
     # Add user to table
-    db = get_db()
+    d = db.get_db()
     encode_pw = bytes(request.form['password'], 'utf-8')
     hashed_pw = bcrypt.hashpw(encode_pw, bcrypt.gensalt())
     cmd = "INSERT INTO users (username, password) VALUES (?,?)"
-    db.execute(cmd,(request.form['username'], hashed_pw))
-    db.commit()
+    d.execute(cmd,(request.form['username'], hashed_pw))
+    d.commit()
     flash('Account created.')
     return redirect(url_for('login'))
 
