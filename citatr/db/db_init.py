@@ -10,6 +10,7 @@ def run_init_db():
   sys.path.append(citatr_dir)
   from citatr import init_db
   init_db()
+  print("Database initialized.")
 
 if os.path.isfile(db_file):
   confirmation = input("Database already exists. Overwrite? (Y/N)\n --> ")
@@ -17,7 +18,6 @@ if os.path.isfile(db_file):
     os.remove(db_file)
     print("Existing database deleted...")
     run_init_db()
-    print("Database initialized.")
   else:
     print("Database initialization aborted.")
 else:
