@@ -1,8 +1,6 @@
 # flask imports
-from flask import Flask, g
 import os
-import sqlite3
-import bcrypt
+from flask import Flask
 
 # create our little application :)
 app = Flask(__name__)
