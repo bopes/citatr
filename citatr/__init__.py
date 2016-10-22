@@ -36,14 +36,8 @@ def init_db():
   db = get_db()
   with app.open_resource('db/schema.sql', mode='r') as f:
     db.cursor().executescript(f.read())
-
-  encoded_pw = bytes(app.config['PASSWORD'], 'utf-8')
-  hashed_pw = bcrypt.hashpw(encoded_pw, bcrypt.gensalt())
-
-  db.execute('INSERT INTO users (username, password) values (?, ?)', [app.config['USERNAME'], hashed_pw])
   db.commit()
 
-  print(' * Initialized database')
 
 # Close database connection
 @app.teardown_appcontext
