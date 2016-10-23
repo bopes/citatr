@@ -19,7 +19,7 @@ def login():
   if request.method == "POST":
     d = db.get_db()
     # Encode the user provided password for hash comparison
-    encode_pw = bytes(request.form['password'], 'utf-8')
+    encode_pw = request.form['password'].encode('UTF-8','strict')
     # Find the given username in databse (SQLi safe)
     cmd = "SELECT * FROM users WHERE username=?"
     user = d.execute(cmd,(request.form['username'],)).fetchone()
@@ -72,7 +72,7 @@ def signup():
       error = 'Username already taken. Please select a different username.'
       return render_template('signup.html', error=error)
     # Add user to table
-    encode_pw = bytes(request.form['password'], 'utf-8')
+    encode_pw = request.form['password'].encode('UTF-8','strict')
     hashed_pw = bcrypt.hashpw(encode_pw, bcrypt.gensalt())
     cmd = "INSERT INTO users (username, password) VALUES (?,?)"
     d.execute(cmd,(request.form['username'], hashed_pw))
