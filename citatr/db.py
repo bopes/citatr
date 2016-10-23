@@ -20,12 +20,17 @@ def get_db():
 # Initialize database
 def init_db():
   db = get_db()
-  if not os.path.isfile(app.config['DATABASE']) or app.config['TESTING']:
-    with app.open_resource('database/schema.sql', mode='r') as f:
-      db.cursor().executescript(f.read())
-    db.commit()
+  with app.open_resource('database/schema.sql', mode='r') as f:
+    db.cursor().executescript(f.read())
+  # Seed db
+  seed_db()
+  db.commit()
   if not app.config['TESTING']:
     print(" * Database initialized.")
+
+@app.cli.command('initdb')
+def initdb_command():
+  init_db()
 
 # Close database connection
 @app.teardown_appcontext
