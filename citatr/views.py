@@ -62,11 +62,16 @@ def signup():
       error = 'All values must be filled.'
       return render_template('signup.html', error=error)
     # Confirm password
-    if request.form['password'] != request.form['password_cnf']:
+    elif request.form['password'] != request.form['password_cnf']:
       error = 'Password and password confirmation must match.'
       return render_template('signup.html', error=error)
-    # Add user to table
     d = db.get_db()
+    # Check if username has already been taken
+    cmd = "SELECT * FROM users WHERE username LIKE ?"
+    if d.execute(cmd,(request.form['username'],)).fetchone():
+      error = 'Username already taken. Please select a different username.'
+      return render_template('signup.html', error=error)
+    # Add user to table
     encode_pw = bytes(request.form['password'], 'utf-8')
     hashed_pw = bcrypt.hashpw(encode_pw, bcrypt.gensalt())
     cmd = "INSERT INTO users (username, password) VALUES (?,?)"
