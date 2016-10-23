@@ -29,9 +29,9 @@ def init_db():
   seed_db()
   db.commit()
 
-@app.cli.command('initdb')
-def initdb_command():
-  init_db()
+# @app.cli.command('initdb')
+# def initdb_command():
+#   init_db()
 
 # Close database connection
 @app.teardown_appcontext
