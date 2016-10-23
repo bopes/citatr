@@ -58,13 +58,13 @@ def signup():
     return redirect(url_for('index'))
   else:
     # Check all fields are entered
-    if any(entry == "" for entry in request.form):
+    if any(entry == "" for entry in request.form.values()):
       error = 'All values must be filled.'
-      return render_template('signup')
+      return render_template('signup.html', error=error)
     # Confirm password
     if request.form['password'] != request.form['password_cnf']:
       error = 'Password and password confirmation must match.'
-      return render_template('signup')
+      return render_template('signup.html', error=error)
     # Add user to table
     d = db.get_db()
     encode_pw = bytes(request.form['password'], 'utf-8')
