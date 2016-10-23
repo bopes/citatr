@@ -22,11 +22,12 @@ def init_db():
   db = get_db()
   with app.open_resource('database/schema.sql', mode='r') as f:
     db.cursor().executescript(f.read())
+  db.commit()
+  if not app.config['TESTING']:
+    print(" --> Database initialized.")
   # Seed db
   seed_db()
   db.commit()
-  if not app.config['TESTING']:
-    print(" * Database initialized.")
 
 @app.cli.command('initdb')
 def initdb_command():
@@ -50,18 +51,19 @@ def seed_db():
     users_added += 1
   db.commit()
   # Display seed counts
-  user_count = db.execute("SELECT COUNT(*) FROM users;").fetchone()[0]
-  print("%i seed user(s) added. %i user(s) total." % (users_added, user_count))
-  # Complete seed
-  print("Seed complete.")
+  if not app.config['TESTING']:
+    user_count = db.execute("SELECT COUNT(*) FROM users;").fetchone()[0]
+    print(" --> %i seed user(s) added. %i user(s) total." % (users_added, user_count))
+    # Complete seed
+    print(" --> Seeding complete.")
 
 # Drop database
 def drop_db():
   if os.path.isfile(app.config['DATABASE']):
     os.remove(app.config['DATABASE'])
-    print("Existing database deleted...")
+    print(" --> Existing database deleted...")
   else:
-    print("No existing database found.")
+    print(" --> No existing database found.")
 
 # Reset database
 def reset_db():
