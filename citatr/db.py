@@ -19,18 +19,13 @@ def get_db():
 
 # Initialize database
 def init_db():
-  if os.path.isfile(app.config['DATABASE']):
-    confirmation = input("Database already exists. Overwrite? (Y/N)\n --> ")
-    if confirmation not in ['Y','YES",Yes','y','yes']:
-      print("Database initialization aborted.")
-      return
-    else:
-      drop_db()
   db = get_db()
-  with app.open_resource('database/schema.sql', mode='r') as f:
-    db.cursor().executescript(f.read())
-  db.commit()
-  print("Database initialized.")
+  if not os.path.isfile(app.config['DATABASE']) or app.config['TESTING']:
+    with app.open_resource('database/schema.sql', mode='r') as f:
+      db.cursor().executescript(f.read())
+    db.commit()
+  if not app.config['TESTING']:
+    print(" * Database initialized.")
 
 # Close database connection
 @app.teardown_appcontext
@@ -65,5 +60,12 @@ def drop_db():
 
 # Reset database
 def reset_db():
+  # if os.path.isfile(app.config['DATABASE']):
+  #   confirmation = input("Database already exists. Overwrite? (Y/N)\n --> ")
+  #   if confirmation not in ['Y','YES",Yes','y','yes']:
+  #     print("Database initialization aborted.")
+  #     return
+  #   else:
+  drop_db()
   init_db()
   seed_db()
