@@ -1,7 +1,6 @@
 import os
-import sys
-import bcrypt
 import sqlite3
+import bcrypt
 from flask import g
 from citatr import app
 from citatr.database import seeds
@@ -19,23 +18,19 @@ def get_db():
   return g.sqlite_db
 
 # Initialize database
-def initialize():
+def init_db():
+  if os.path.isfile(app.config['DATABASE']):
+    confirmation = input("Database already exists. Overwrite? (Y/N)\n --> ")
+    if confirmation not in ['Y','YES",Yes','y','yes']:
+      print("Database initialization aborted.")
+      return
+    else:
+      drop_db()
   db = get_db()
   with app.open_resource('database/schema.sql', mode='r') as f:
     db.cursor().executescript(f.read())
   db.commit()
   print("Database initialized.")
-
-def init_db():
-  if os.path.isfile(app.config['DATABASE']):
-    confirmation = input("Database already exists. Overwrite? (Y/N)\n --> ")
-    if confirmation in ['Y','YES",Yes','y','yes']:
-      drop_db()
-      initialize()
-    else:
-      print("Database initialization aborted.")
-  else:
-    initialize()
 
 # Close database connection
 @app.teardown_appcontext
@@ -49,8 +44,8 @@ def seed_db():
   # Add seeds
   users_added = 0
   for user in seeds.users:
-    u = user[0]
-    pw = bcrypt.hashpw(bytes(user[1], 'utf-8'), bcrypt.gensalt())
+    u = user.username
+    pw = bcrypt.hashpw(user.password, bcrypt.gensalt())
     db.execute('INSERT INTO users (username, password) values (?, ?)', [u,pw])
     users_added += 1
   db.commit()
