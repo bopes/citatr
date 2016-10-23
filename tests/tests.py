@@ -48,9 +48,8 @@ class CitatrTestCase(unittest.TestCase):
       password=password
       ), follow_redirects=True)
 
-  def valid_login(self):
+  def valid_signup(self):
     self.signup('test','password','password')
-    self.login('test','password')
 
   def logout(self):
     return self.app.get('/logout', follow_redirects=True)
@@ -79,10 +78,13 @@ class CitatrTestCase(unittest.TestCase):
     rv = self.signup('test','invalid','password')
     assert b'Password and password confirmation must match.' in rv.data
     # Sign up with valid password
-    rv = self.signup('test','password','password')
+    rv = self.signup('test1','password','password')
     assert b'Account created.' in rv.data
+    # Sign up with taken username
+    rv = self.signup('test1','password2','password2')
+    assert b'Username already taken. Please select a different username.' in rv.data
     # Access /index while logged in
-    rv = self.login('test', 'password')
+    rv = self.login('test1', 'password')
     assert b'Initial Westlaw Citation' in rv.data
     # Access root while logged in
     rv = self.get_root()
@@ -103,8 +105,8 @@ class CitatrTestCase(unittest.TestCase):
     assert b'401 Unauthorized' in rv.data
     assert test_citation_result not in rv.data
     # Convert while logged in
-    self.valid_login()
-    self.login('bigep', 'yankeehotelfoxtrot')
+    self.valid_signup()
+    self.login('test', 'password')
     rv = self.convert_citation(test_citation, '914-15')
     assert test_citation_result in rv.data
 
